@@ -257,10 +257,14 @@ def extract_document_section(response_text, pdf_dir = "./data"):
         return "Question is out of documents"
 
 @app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/index")
 def index():
     if 'username' in session:
         return render_template("index.html", messages=messages)
-    return redirect(url_for("home"))
+    return redirect(url_for("login"))
 
 
 
