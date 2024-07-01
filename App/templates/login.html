@@ -4,21 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
-            
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
+            
         }
         .container {
             padding: 20px;
             max-width: 430px;
             width: 100%;
+            background-color: #fff; /* Optional background color for the form container */
+            border-radius: 8px; /* Optional rounded corners */
+            
+        }
+        .login-box {
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px; /* Adjust based on your logo size */
+            height: auto;
+        }
+        .logo h1 {
+            margin: 10px 0;
+            font-size: 36px;
+            color: #333;
+        }
+        .logo p {
+            font-size: 16px;
+            color: #666;
         }
         h2 {
             margin-bottom: 20px;
@@ -47,7 +70,7 @@
         button {
             width: 100%;
             padding: 14px;
-            background-color: #000000;
+            background-color: #4000ff;
             color: white;
             border: none;
             border-radius: 8px;
@@ -90,26 +113,44 @@
             text-align: center;
             margin-top: 10px;
         }
+        /* Responsive styles */
+        @media (min-width: 1024px) {
+            body {
+                justify-content: flex-start;
+                padding-left: 30px;
+            }
+            .container {
+                max-width: 400px; /* Adjust based on your preference */
+                position: relative;
+                left: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Let’s Sign you in.</h2>
-        <h3>Welcome back <br> You’ve been Missed!</h3>
-        <form action="{{ url_for('login') }}" method="post">
-            <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Email" required>
+        <div class="login-box">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="SCAI Logo">
+                <h1>SCAI</h1>
+                <p>Standards & Codes Ai</p>
             </div>
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-            </div>
-            <p>Don't have an account? <a href="{{ url_for('register') }}">Signup</a></p>
-            {% if error %}
-            <p class="error">{{ error }}</p>
-            {% endif %}
-            <button type="submit">Login</button>
-            
-        </form>
+            <h2>Welcome!</h2>
+            <h3>please login to your account to start using SCAI</h3>
+            <form action="{{ url_for('login') }}" method="post">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Signup</a></p>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
